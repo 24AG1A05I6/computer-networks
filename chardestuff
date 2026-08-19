@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class CharacterDeStuffing {
+
+    public static String deStuff(String data, char esc) {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < data.length(); i++) {
+            char ch = data.charAt(i);
+
+            if (ch == esc && i + 1 < data.length()) {
+                i++; // Skip ESC
+                result.append(data.charAt(i));
+            } else {
+                result.append(ch);
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        char esc = 'E';
+
+        System.out.print("Enter stuffed data: ");
+        String data = sc.nextLine();
+
+        String originalData = deStuff(data, esc);
+
+        System.out.println("Stuffed data  : " + data);
+        System.out.println("Original data : " + originalData);
+
+        sc.close();
+    }
+}
